@@ -41,10 +41,9 @@ function createPost(post) {
 
 }
 
+const updateLastUserActivityTime = new Date();
 
-createPost({ CreatedAt: new Date().getTime(), Title: "Post four", body: "this is post three body." }, getPosts).then(() => {
-  deletePost(posts)
-}).then(getPosts).catch(err => console.log("some thing went wrong."))
+Promise.all([createPost({ CreatedAt: new Date().getTime(), Title: "Post four", body: "this is post three body." }, getPosts), updateLastUserActivityTime]).then(values => console.log(values)).then(getPosts).then(()=>{deletePost(posts)}).then(getPosts).catch(err => console.log("some thing went wrong."))
 
 
 
