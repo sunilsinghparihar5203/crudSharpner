@@ -1,30 +1,38 @@
 console.log('person1 : shows ticket')
 console.log('person2 : shows ticket')
 
-const promiseWifeBringingTicks = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve('ticket')
-  }, 3000)
-})
+const preMovie = async () => {
+  const promiseWifeBringingtickets = new Promise((resolve, reject) => {
+    setTimeout(() => resolve('ticket'), 3000);
+  })
+  const getPopcorn = new Promise((resolve, reject) => resolve(`popcorn`));
 
-const getPopcorn = promiseWifeBringingTicks.then((t) => {
-  console.log("Wife : I have the tickets.")
-  console.log("husaband : we should go in .")
+  const addbutter = new Promise((resolve, reject) => resolve('butter'));
 
-  console.log(`wife : no i am hungry`)
+  let ticket = await promiseWifeBringingtickets;
 
-  return new Promise((resolve, reject) => resolve(` ${t} butter`))
-})
+  console.log(`wife: i have the ${ticket}`)
+  console.log('husband: we should go in ')
+  console.log('wife: No i am hungry')
 
-const getButter = getPopcorn.then((t) => {
-  console.log("husaband : I got some popcorn .")
-  console.log("husaband : we should go in .")
-  console.log(`wife : I need butter on my popcorn`)
+  let popcorn = await getPopcorn;
 
-  return new Promise((resolve, reject) => resolve(` ${t} popcorn`))
-})
+  console.log(`husband : I got some  ${popcorn} `)
+  console.log("husband : We should go in . ")
+  console.log("Wife: I need button on my popcorn . ")
 
-getButter.then((t) => console.log(t))
+  let butter = await addbutter;
+
+  console.log(`husband : I got some ${butter} on popcorn.`)
+  console.log(`husband : anything else darling.`)
+  console.log('Wife : lets go we are geting late')
+  console.log('husband : thank you for reminder.')
+
+  return ticket;
+};
+
+
+preMovie().then((m) => console.log(`person 3 : show ${m}`));
 
 
 console.log('person4 : shows ticket')
